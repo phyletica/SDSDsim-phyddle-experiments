@@ -1,0 +1,25 @@
+name: SDSD-phyddle
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.8
+  # - pip>=21.3
+  # - setuptools>=64.0
+  # - setuptools_scm>=7.0.0
+  - yaml
+  - dendropy
+  - graphviz
+  - h5py
+  - keras
+  - matplotlib
+  - numpy
+  - pandas
+  - Pillow
+  # - pydot_ng
+  - pypdf
+  - scikit-learn
+  - scipy
+  - pytorch
+  - torchview
+  - tqdm
