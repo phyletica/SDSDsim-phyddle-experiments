@@ -73,10 +73,12 @@ args = {
     # Plot Step settings            #
     #-------------------------------#
     'plot_train_color'      : 'blue',       # plot color for training data
-    'plot_test_color'       : 'purple',     # plot color for test data
+    'plot_test_color'       : '#714A7E',     # plot color for test data
+    # 'plot_test_color'       : '#440154',     # plot color for test data
     'plot_val_color'        : 'red',        # plot color for validation data
     'plot_aux_color'        : 'green',      # plot color for input auxiliary data
     'plot_label_color'      : 'orange',     # plot color for labels (params)
     'plot_emp_color'        : 'black',      # plot color for estimated data/values
-    'plot_pca_noise'        : 0.01          # Add noise to PCA plot to dampen contrast from point values
+    'plot_pca_noise'        : 0.01,         # Add noise to PCA plot to dampen contrast from point values
+    'plot_num_scatter'      : 100,          # Number of examples in scatter plot
  }
