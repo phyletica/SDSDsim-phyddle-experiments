@@ -763,7 +763,7 @@ class Plotter:
             pretty_p = p
             pretty_ax = p
             if pretty_p == 'model_type':
-                pretty_p = 'model'
+                pretty_p = 'Number of expected burst rates'
                 pretty_ax = 'number of burst rates'
             # get true/est values
             est_cats_p = [x for x in ests.columns if p in x]
@@ -808,11 +808,12 @@ class Plotter:
             cbar = plt.colorbar(cax, fraction=0.046, pad=0.04)
             # plt.text(x=0,y=0,s=f'False Positive Rate: {s_fpr}', ha='right', va='top', fontsize=10)
             # plt.text(x=0,y=0,s=f'True Positive Rate: {s_tpr}', ha='right', va='bottom', fontsize=10)
-            plt.xlabel(f'True {pretty_ax}')
-            plt.ylabel(f'Estimated {pretty_ax}')
+            plt.xlabel(f'True number')
+            plt.ylabel(f'Estimated number')
             if title.lower() == 'test':
                 title = "Holdout data set"
             # plt.title(f'{title} estimates: {pretty_p.capitalize()}')
+            plt.title(f'{pretty_p}')
             ax.xaxis.set_ticks(range(num_cat))
             ax.yaxis.set_ticks(range(num_cat))
             xtick_labels = [item for item in ax.get_xticklabels()]
@@ -1400,7 +1401,7 @@ class Plotter:
         return
 
     def plot_custom_scatter_accuracy(self, ests, labels, prefix,
-                              color="blue", axis_labels=("True", "Estimated"),
+                              color="blue", axis_labels=("True value", "Estimated value"),
                               title='', plot_log=False,
                               fig_width = custom_scatter_width,
                               fig_height = custom_scatter_height):
@@ -1438,9 +1439,10 @@ class Plotter:
             for i in range(len(p_list)):
                 word = p_list[i]
                 if word == 'log10':
-                    new_p_list.append('log')
+                    new_p_list.append('Log')
                 elif (word == 'state') and (p_list[i+1] == 'rate'):
-                    new_p_list.append('state transition')
+                    new_p_list.append('rate of state transitions')
+                    break
                 elif (word == '0') or (word == '1'):
                     if "burst" in p:
                         new_p_list.append(f'for State {word}')
@@ -1450,10 +1452,11 @@ class Plotter:
                     new_p_list.append(word)
 
             pretty_p = ' '.join(new_p_list)
+            # pretty_p = pretty_p.capitalize()
 
             # labels
-            x_label = f'{axis_labels[0]} {pretty_p}'
-            y_label = f'{axis_labels[1]} {pretty_p}'
+            x_label = f'{axis_labels[0]}' # {pretty_p}'
+            y_label = f'{axis_labels[1]}' # {pretty_p}'
 
             # estimates (x) and true values (y)
             lbl_true = labels[p][:].to_numpy()
@@ -1572,6 +1575,7 @@ class Plotter:
 
             # cosmetics
             # plt.title(f'{title.capitalize()} estimates: {pretty_p.lower()}')
+            plt.title(f'{pretty_p}')
             ax.set_xlabel(x_label)
             ax.set_ylabel(y_label)
             # if plot_log:
@@ -1579,7 +1583,7 @@ class Plotter:
             #     plt.yscale('log')
 
             ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1f'))
-            if y_label.endswith('burst rate for State 0'):
+            if pretty_p.lower().endswith('burst rate for state 0'):
                 ax.xaxis.set_ticks([-2.5, -2.0, -1.5, -1.0, -0.5])
 
             # save
