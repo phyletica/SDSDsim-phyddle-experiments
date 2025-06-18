@@ -1,0 +1,172 @@
+\renewcommand{\postnotedelim}{\iffieldpages{postnote}{\addcolon}{\addcomma\space}} 
+\DeclareFieldFormat{postnote}{#1} 
+
+\DeclareFieldFormat[article, inbook, incollection, inproceedings, patent, thesis, unpublished]{title}{#1}
+% \DeclareFieldFormat[article, inbook, incollection, inproceedings, patent, thesis, unpublished]{journaltitle}{\mkbibemph{#1}\addcomma}
+\DeclareFieldFormat[article, inbook, incollection, inproceedings, patent, thesis, unpublished]{volume}{{#1}\addcolon} %puts volume number in parens
+\DeclareFieldFormat[article, inbook, incollection, inproceedings, patent, thesis, unpublished]{pages}{\nopp{#1}\addcomma} %puts volume number in parens
+%\DeclareFieldFormat[article, inbook, incollection, inproceedings, patent, thesis, unpublished]{year}{\mkbibparens{#1}\nopunct} %puts year in parens
+
+%\DeclareFieldFormat[article, incollection, patent, thesis, unpublished]{pages}{{\nopp#1}}
+
+\DeclareFieldFormat{sentencecase}{\MakeSentenceCase{#1}}
+\renewbibmacro*{title}{%
+  \ifthenelse{\iffieldundef{title}\AND\iffieldundef{subtitle}}
+    {}
+    {\ifthenelse{\ifentrytype{article}\OR\ifentrytype{inbook}%
+      \OR\ifentrytype{incollection}\OR\ifentrytype{inproceedings}%
+      \OR\ifentrytype{inreference}}
+      {\printtext[title]{%
+        \printfield[sentencecase]{title}%
+        \setunit{\subtitlepunct}%
+        \printfield[sentencecase]{subtitle}}}%
+      {\printtext[title]{%
+        \printfield[titlecase]{title}%
+        \setunit{\subtitlepunct}%
+        \printfield[titlecase]{subtitle}}}%
+     \newunit}%
+  \printfield{titleaddon}}
+
+\DefineBibliographyStrings{english}{% various adjustments to common bib entry strings
+urlseen = {Accessed:},% What goes in front of the date a URL was accessed/retrieved etc.
+editor = {(Ed)},%Ed – no dot, in brackets
+editors = {(Eds)},% Eds – no dot, in brackets
+byeditor = {(Ed.)}}% ‘Edited by’ for edited works
+
+\DeclareNameAlias{default}{last-first}
+
+\defbibheading{refscitedsection}[\refname]{\section*{References Cited}}
+\defbibheading{refscitedsubsection}[\refname]{\subsection*{References Cited}}
+
+\renewbibmacro{in:}{}
+
+\renewbibmacro{publisher+location+date}{
+  \iflistundef{publisher}
+    {}
+    {\printlist{publisher}%
+       {\addcomma\space}%
+      \iflistundef{location}
+        {}
+        {\printlist{location}}%
+    }
+}
+
+% Add comma after journal if volume or pages defined.
+\newbibmacro*{journal}{%
+  \iffieldundef{journaltitle}
+    {}
+    {\printtext[journaltitle]{%
+       \printfield[titlecase]{journaltitle}%
+       \setunit{\subtitlepunct}%
+       \printfield[titlecase]{journalsubtitle}}}
+  \ifboolexpr{
+    test {\iffieldundef{volume}}
+    and
+    test {\iffieldundef{pages}}
+  }
+  {}
+  {\addcomma}}
+
+
+
+\DeclareBibliographyDriver{article}{%
+\usebibmacro{bibindex}%
+\usebibmacro{begentry}%
+\usebibmacro{author/translator+others}%
+%\newunit\newblock
+%\printfield{year}%
+\setunit{\labelnamepunct}\newblock
+\usebibmacro{title}%
+\newunit
+\printlist{language}%
+\newunit\newblock
+\usebibmacro{byauthor}%
+\newunit\newblock
+\usebibmacro{bytranslator+others}%
+\newunit\newblock
+\printfield{version}%
+\newunit\newblock
+%\usebibmacro{in:}% %mit in:
+\usebibmacro{journal}%
+\newunit\newblock
+\printfield{volume}%
+\newunit\newblock
+\usebibmacro{byeditor+others}%
+\newunit\newblock
+\printfield{pages}%
+\newunit
+\printfield{year}%
+\newunit\newblock
+\iftoggle{bbx:isbn}
+{\printfield{issn}}
+{}%
+\newunit\newblock
+\usebibmacro{doi+eprint+url}%
+\newunit\newblock
+\usebibmacro{addendum+pubstate}%
+\newunit\newblock
+\usebibmacro{pageref}%
+\usebibmacro{finentry}}
+
+
+\DeclareBibliographyDriver{inproceedings}{%
+\usebibmacro{bibindex}%
+\usebibmacro{begentry}%
+\usebibmacro{author/translator+others}%
+%\newunit\newblock
+%\printfield{year}%
+\setunit{\labelnamepunct}\newblock
+\usebibmacro{title}%
+\newunit
+\printlist{language}%
+\newunit\newblock
+\usebibmacro{byauthor}%
+\newunit\newblock
+\usebibmacro{bytranslator+others}%
+\newunit\newblock
+\printfield{version}%
+\newunit\newblock
+%\usebibmacro{in:}% %mit in:
+\usebibmacro{booktitle}%
+\newunit\newblock
+\printfield{volume}%
+\newunit\newblock
+\usebibmacro{byeditor+others}%
+\newunit\newblock
+\usebibmacro{publisher+location+date}%
+\newunit\newblock
+\printfield{pages}%
+\newunit
+\printfield{year}%
+\newunit\newblock
+\usebibmacro{pageref}%
+\usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{book}{%
+\usebibmacro{bibindex}%
+\usebibmacro{begentry}%
+\usebibmacro{author/translator+others}%
+%\newunit\newblock
+%\printfield{year}%
+\setunit{\labelnamepunct}\newblock
+\usebibmacro{title}%
+\newunit
+\printlist{language}%
+\newunit\newblock
+\usebibmacro{byauthor}%
+\newunit\newblock
+\usebibmacro{bytranslator+others}%
+\newunit\newblock
+%\usebibmacro{in:}% %mit in:
+\usebibmacro{booktitle}%
+\newunit\newblock
+\printfield{volume}%
+\newunit\newblock
+\usebibmacro{publisher+location+date}%
+\newunit\newblock
+\printfield{pages}%
+\newunit
+\printfield{year}%
+\newunit\newblock
+\usebibmacro{pageref}%
+\usebibmacro{finentry}}

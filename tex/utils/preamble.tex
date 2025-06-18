@@ -1,0 +1,51 @@
+\pdfpagewidth = 8.5in
+\pdfpageheight = 11.0in
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+\pagestyle{plain}
+\pagenumbering{arabic}
+\usepackage{setspace}
+\usepackage[usenames]{color}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[table, x11names]{xcolor}
+\usepackage{ragged2e}
+\usepackage{upgreek}
+\usepackage[T1]{fontenc}
+\usepackage[titles]{tocloft}
+\usepackage{xspace}
+\usepackage{ifthen}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{tabulary}
+\usepackage{authblk}
+\usepackage{tikz}
+% \usepackage{sfmath}
+\usepackage{rotating} % For sidewaysfigure
+
+\usepackage{hyperref}
+% \hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=black, linkcolor=black, citecolor=black}
+\hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue}
+
+\usepackage[capitalize]{cleveref}
+\newcommand{\crefrangeconjunction}{--}
+
+% Set up line numbering; using lineno to number math lines sanely
+\usepackage[right, mathlines]{lineno}
+\setlength\linenumbersep{1cm}
+\def\linenumberfont{\normalfont\scriptsize\sffamily}
+
+% Set up caption formatting
+\usepackage{subcaption}
+\usepackage[format=plain, labelsep=period, singlelinecheck=true, skip=2pt, font=sf]{caption}
+\DeclareCaptionLabelFormat{noSpace}{{#1}{#2}}
+\DeclareCaptionListFormat{figList}{Figure {#2}.}
+\DeclareCaptionListFormat{sFigList}{Figure S{#2}.}
+

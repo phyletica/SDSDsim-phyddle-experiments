@@ -1,0 +1,143 @@
+\input{../utils/slide-preamble.tex}
+\input{../utils/color-palettes.tex}
+\input{../utils/dpp-preamble.tex}
+\input{../utils/macros.tex}
+\input{../utils/notation.tex}
+\input{../utils/slide-macros.tex}
+% \bibliography{../bib/references}
+\bibliography{references}
+\usepackage{lmodern}
+\usepackage{bm}
+\usepackage{pdfpages}
+
+\usepackage{appendixnumberbeamer}
+% \beamerdefaultoverlayspecification{<+->}
+
+% \ExecuteBibliographyOptions{maxnames=3}
+
+\setbeamertemplate{footline}{}
+\renewcommand\footnoterule{}
+\setbeamertemplate{footnote}{%
+  \parindent 0em\noindent%
+  \raggedleft
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\title[Trait-dependent shared divergences]{Exploring trait-dependent models of multi-lineage processes of diversification with machine learning}
+
+\author[Jamie Oaks]{
+    Jamie R.\ Oaks\inst{1}
+}
+\institute[\href{https://phyletica.org}{phyletica.org}]{
+    \inst{1}%
+    Museum of Natural History \& Department of Biology, Auburn
+    University
+}
+
+% \date{\today}
+\date{June 23, 2025}
+
+% \setbeamersize{text margin left=3mm, text margin right=3mm}
+\setbeamersize{text margin left=5mm, text margin right=5mm}
+
+\begin{document}
+
+\input{title-slide.tex}
+
+\section{An assumption (i.e., exciting opportunity) in phylogenetics}
+% We've long assumed divergences are independent
+
+\include{indy-div-assumption.tex}
+
+% Show example of how assumption is violated
+
+\begin{frame}
+    \input{shared-div-example-very-short-no-goal-frameless.tex}
+    \barefootnote{\tiny\href{https://phylopic.org/}{phylopic.org CC0}}
+\end{frame}
+
+\include{indy-div-assumption-violations.tex}
+
+% Progress toward that assumption
+%   Phycoeval
+%   BD with share divergences (Magee and Hohna preprint 2021)
+%   We have phylo inference machinery and BD likelihood of trees
+
+\include{progress-phycoeval.tex}
+\include{progress-magee-hohna.tex}
+
+% But I want to know how/if lineage traits influence propensity for divergence events
+%   Do geckos inhabiting shallow-water islands have higher rates of shared divergences?
+%   Were geckos adapted to limestone karst more prone to diversification via fragmentation of karst formations?
+%   Do strains of virus differ in their ability to spread at social gatherings?
+
+\input{state-dep-questions.tex}
+
+% Walk through state-dependent multi-lineage BD model
+% Coded simulator to explore
+
+\input{sdsd-model-overview.tex}
+
+\input{sdsdsim-trees.tex}
+
+% Sounds cool, but is it worth applying for funds to spend years developing these models and inference machinery?
+%   Is there information in the trees produced by these models to detect shared div rates and differences based on lineage char states?
+
+% Could try to prove identifiability, but practical interpretation is difficult
+
+\input{sdsd-idea-next-steps.tex}
+
+% Machine-learning seems like a great way to learn patterns in data
+%   Phyddle makes it easy!
+
+\input{phyddle-intro.tex}
+
+% Methods
+%   Simulation model
+%   Basic ML methods
+
+\input{phyddle-methods.tex}
+
+% Results of simple birth-death-burst analyses
+% Results of 2 state-dep burst rates
+% Results of model choice between 1 and 2 burst rates
+
+% \input{results-bdb-simple.tex}
+\input{results-bdb-param-est.tex}
+\input{results-bdb-model-choice.tex}
+
+
+% Caveats
+%   Data aren't trees!
+%   No model violations
+
+% Future directions
+%   Intro polytomies into burst events
+%       Burst-y processes can cause them
+%   Dev Bayesian implementation of state-dep shared div models
+%       Learn from the actual data
+
+% Shout-outs
+%   Phyddle (Ammon and Michael)
+%       Very user-friendly; responsive to issues
+%   Paul Lewis C++ tutorial???
+
+% Acknowledgments
+
+% \begin{frame}
+% \frametitle{Outline}
+% \tableofcontents
+% \end{frame}
+
+% \begin{frame}
+% \frametitle{Outline}
+% \tableofcontents[currentsection,currentsubsection]
+% \end{frame}
+
+% Extra slides
+%%%%%%%%%%%%%%
+
+% \begin{frame}[noframenumbering]
+% \end{frame
+
+\end{document}

@@ -1,0 +1,72 @@
+{
+\setbeamertemplate{headline}{\vspace{1.3cm}\hspace{3mm}\includegraphics[height=0.28\frametextheight]{../images/qr-code-sdsdsim-with-name.png}\hfill}
+\begin{frame}[t]
+    \frametitle{State-dependent model of shared divergences}
+
+    \vspace{-2mm}
+    \begin{columns}[T]
+        \column{.42\textwidth}
+
+        \begin{minipage}[t][\frametextheight][t]{\columnwidth}
+            \begin{figure}
+                \begin{center}
+                    \includegraphics[width=\textwidth,height=\frametextheight,keepaspectratio]{../images/sdsd-model-example.pdf}
+                \end{center}
+            \end{figure}
+        \end{minipage}
+
+        \column{.01\textwidth}
+
+        \column{.55\textwidth}
+
+        \begin{minipage}[t][\frametextheight][t]{\columnwidth}
+
+            Parameters:
+
+            \begin{itemize}
+                \item Transition rates between character \\
+                    \textbf{State 0} $\leftrightarrows$ \textbf{\textcolor{dbluestate}{State 1}}
+                \item Speciation rate, $\lambda$ (per-lineage)
+                \item Extinction rate, $\mu$ (per-lineage)
+                \item Rate of ``burst events'', $\beta$ (tree-wide)
+                \item \textbf{State 0} probability of speciation at events, $p_0$
+                \item \textbf{\textcolor{dbluestate}{State 1}} probability of speciation at events, $p_1$
+                \begin{itemize}
+                    \item<2-> $p_1 \beta$ = Per-lineage expected rate of burst divergences
+                \end{itemize}
+            \end{itemize}
+
+            % \bigskip
+            % \uncover<2->{
+            % Can get per-lineage expected rate of burst divergences
+            % \begin{itemize}
+            %     \item \Eg, \hspace{0.2em} $p_0 \beta$
+            % \end{itemize}
+            % }
+
+            % \medskip
+            % \uncover<3->{
+            % Ideally, full Bayesian inference of state-dependent burst model and
+            % tree
+            % }
+
+            % \medskip
+            % \uncover<4->{
+            % Is all that work worth it?
+            % }
+
+            % \vspace{-4mm}
+            % \uncover<3->{
+            % \begin{center}
+            %     \href{https://github.com/phyletica/SDSDsim}{%
+            %     \includegraphics[height=0.25\frametextheight]{../images/qr-code-SDSDsim.png}}
+            %     \captionof{figure}{\href{https://github.com/phyletica/SDSDsim}{\normalsize \textbf{\textit{SDSDsim}}}}
+            % \end{center}
+            % }
+
+        \end{minipage}
+
+    \end{columns}
+
+\end{frame}
+}

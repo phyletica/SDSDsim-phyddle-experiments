@@ -1,0 +1,40 @@
+\begin{frame}
+    \frametitle{phyddle analyses}
+
+    % \begin{adjustwidth}{-1em}{-1em}
+
+    \begin{itemize}
+        \setlength{\itemindent}{6em}
+        \item Simulated 100k, 500-tip trees (95k training, 5k holdout)
+        \item Speciation rate, $\speciationrate \sim \textrm{\sffamily Log-uniform}(0.01, 1)$
+        \item Extinction rate $ \sim \textrm{\sffamily Log-uniform}(0.01\speciationrate, \speciationrate)$
+        \item Two character states
+        \begin{itemize}
+            \setlength{\itemindent}{6em}
+            \item Transition rate $ \sim \textrm{\sffamily Uniform}(0.1\speciationrate, 0.7\speciationrate)$
+        \end{itemize}
+    \end{itemize}
+
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \begin{center}
+            \textbf{\textit{Parameter estimation}}
+        \end{center}
+        \begin{itemize}
+            \item Burst rate $ \sim \textrm{\sffamily Uniform}(0.3\speciationrate, 1.2\speciationrate)$
+            \item State 0 burst prob $ \sim \textrm{\sffamily Uniform}(0.65, 1)$
+            \item State 1 burst prob $ \sim \textrm{\sffamily Uniform}(0.1, 0.65)$
+        \end{itemize}
+
+        \column{0.48\textwidth}
+        \begin{center}
+            \textbf{\textit{Model choice}}
+        \end{center}
+        \begin{itemize}
+            \item Burst rate $ \sim \textrm{\sffamily Uniform}(0.2\speciationrate, \speciationrate)$
+            \item State 0 burst prob $ \sim \textrm{\sffamily Uniform}(0.6, 1)$
+            \item State 1 burst prob = State 0 \\ OR $ \sim \textrm{\sffamily Uniform}(0.0, 3)$
+        \end{itemize}
+    \end{columns}
+    % \end{adjustwidth}
+\end{frame}

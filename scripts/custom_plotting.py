@@ -763,8 +763,10 @@ class Plotter:
             pretty_p = p
             pretty_ax = p
             if pretty_p == 'model_type':
-                pretty_p = 'model'
+                pretty_p = 'Number of burst rates'
                 pretty_ax = 'number of burst rates'
+            if pretty_p == 'root_state':
+                pretty_p = 'Root state'
             # get true/est values
             est_cats_p = [x for x in ests.columns if p in x]
             lbls_p = labels[p].copy()
@@ -808,19 +810,30 @@ class Plotter:
             cbar = plt.colorbar(cax, fraction=0.046, pad=0.04)
             # plt.text(x=0,y=0,s=f'False Positive Rate: {s_fpr}', ha='right', va='top', fontsize=10)
             # plt.text(x=0,y=0,s=f'True Positive Rate: {s_tpr}', ha='right', va='bottom', fontsize=10)
-            plt.xlabel(f'True {pretty_ax}')
-            plt.ylabel(f'Estimated {pretty_ax}')
+            if pretty_p == 'Root state':
+                plt.xlabel(f'True')
+                plt.ylabel(f'Estimated')
+            else:
+                plt.xlabel(f'True number')
+                plt.ylabel(f'Estimated number')
             if title.lower() == 'test':
                 title = "Holdout data set"
             # plt.title(f'{title} estimates: {pretty_p.capitalize()}')
+            plt.title(f'{pretty_p}')
             ax.xaxis.set_ticks(range(num_cat))
             ax.yaxis.set_ticks(range(num_cat))
             xtick_labels = [item for item in ax.get_xticklabels()]
             ytick_labels = [item for item in ax.get_yticklabels()]
             for i in range(len(xtick_labels)):
-                xtick_labels[i].set_text(str(i + 1))
+                if pretty_p == 'Root state':
+                    xtick_labels[i].set_text(str(i))
+                else:
+                    xtick_labels[i].set_text(str(i + 1))
             for i in range(len(ytick_labels)):
-                ytick_labels[i].set_text(str(i + 1))
+                if pretty_p == 'Root state':
+                    ytick_labels[i].set_text(str(i))
+                else:
+                    ytick_labels[i].set_text(str(i + 1))
             ax.set_xticklabels(xtick_labels)
             ax.set_yticklabels(ytick_labels)
             # fig.gca().set_aspect('equal')
@@ -1400,7 +1413,7 @@ class Plotter:
         return
 
     def plot_custom_scatter_accuracy(self, ests, labels, prefix,
-                              color="blue", axis_labels=("True", "Estimated"),
+                              color="blue", axis_labels=("True value", "Estimated value"),
                               title='', plot_log=False,
                               fig_width = custom_scatter_width,
                               fig_height = custom_scatter_height):
@@ -1438,9 +1451,10 @@ class Plotter:
             for i in range(len(p_list)):
                 word = p_list[i]
                 if word == 'log10':
-                    new_p_list.append('log')
+                    new_p_list.append('Log')
                 elif (word == 'state') and (p_list[i+1] == 'rate'):
-                    new_p_list.append('state transition')
+                    new_p_list.append('rate of state transitions')
+                    break
                 elif (word == '0') or (word == '1'):
                     if "burst" in p:
                         new_p_list.append(f'for State {word}')
@@ -1450,10 +1464,14 @@ class Plotter:
                     new_p_list.append(word)
 
             pretty_p = ' '.join(new_p_list)
+            # pretty_p = pretty_p.capitalize()
+
+            if pretty_p == 'Log expected burst rate diff':
+                pretty_p = 'Log difference in expected burst rate'
 
             # labels
-            x_label = f'{axis_labels[0]} {pretty_p}'
-            y_label = f'{axis_labels[1]} {pretty_p}'
+            x_label = f'{axis_labels[0]}' # {pretty_p}'
+            y_label = f'{axis_labels[1]}' # {pretty_p}'
 
             # estimates (x) and true values (y)
             lbl_true = labels[p][:].to_numpy()
@@ -1572,6 +1590,7 @@ class Plotter:
 
             # cosmetics
             # plt.title(f'{title.capitalize()} estimates: {pretty_p.lower()}')
+            plt.title(f'{pretty_p}')
             ax.set_xlabel(x_label)
             ax.set_ylabel(y_label)
             # if plot_log:
@@ -1579,6 +1598,8 @@ class Plotter:
             #     plt.yscale('log')
 
             ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1f'))
+            if pretty_p.lower().endswith('burst rate for state 0'):
+                ax.xaxis.set_ticks([-2.5, -2.0, -1.5, -1.0, -0.5])
 
             # save
             save_fn = f'{prefix}_{p}.pdf'
@@ -2002,6 +2023,8 @@ class Plotter:
         return
 
 def main():
+    plt.rcParams.update({'axes.titlesize' : 18})
+    plt.rcParams.update({'axes.labelsize' : 16})
     my_args = util.load_config('config.py', arg_overwrite=True)
     my_plt = load(my_args)
     my_plt.custom_run()
