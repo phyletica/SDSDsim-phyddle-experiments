@@ -5,7 +5,11 @@
 
     \begin{itemize}
         \setlength{\itemindent}{6em}
-        \item Simulated 100k, 500-tip trees (95k training, 5k holdout)
+        \item Simulated 100k, trees (95k training, 5k holdout) with 500 extant tips
+        \begin{itemize}
+            \setlength{\itemindent}{6em}
+            \item Extinct lineages removed
+        \end{itemize}
         \item Speciation rate, $\speciationrate \sim \textrm{\sffamily Log-uniform}(0.01, 1)$
         \item Extinction rate $ \sim \textrm{\sffamily Log-uniform}(0.01\speciationrate, \speciationrate)$
         \item Two character states
@@ -33,7 +37,7 @@
         \begin{itemize}
             \item Burst rate $ \sim \textrm{\sffamily Uniform}(0.2\speciationrate, \speciationrate)$
             \item State 0 burst prob $ \sim \textrm{\sffamily Uniform}(0.6, 1)$
-            \item State 1 burst prob = State 0 \\ OR $ \sim \textrm{\sffamily Uniform}(0.0, 3)$
+            \item State 1 burst prob = State 0 \\ OR $ \sim \textrm{\sffamily Uniform}(0.0, 0.3)$
         \end{itemize}
     \end{columns}
     % \end{adjustwidth}

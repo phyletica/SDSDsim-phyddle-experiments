@@ -20,3 +20,4 @@ dependencies:
   - torchview
   - torchvision
   - tqdm
+  - seaborn
