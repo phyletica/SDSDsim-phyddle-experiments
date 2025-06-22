@@ -1,23 +1,58 @@
 \begin{frame}[t]
     \frametitle{Results: State-dependent burst \textbf{\textit{parameter estimation}}}
 
-    \vspace{-3.5mm}
-    \begin{center}
-        % \begin{minipage}[t][0.54\frametextheight][t]{\textwidth}
-            \uncover<2->{
-                \includegraphics[width=0.35\textwidth,height=0.55\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_expected_burst_rate_0-cropped.pdf}
-                \hspace{3mm}
-                \includegraphics[width=0.35\textwidth,height=0.55\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_expected_burst_rate_diff-cropped.pdf}
-            }
-        % \end{minipage}
+    \vspace{-4.5mm}
+    \begin{columns}[T]
+        \column{.33\textwidth}
 
-        % \begin{minipage}[t][0.54\frametextheight][t]{\textwidth}
-                \includegraphics[width=0.35\textwidth,height=0.55\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_birth_rate_0-cropped.pdf}
-                \hspace{3mm}
-                \includegraphics[width=0.35\textwidth,height=0.55\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_death_rate_0-cropped.pdf}
-                \hspace{3mm}
-                \includegraphics[width=0.35\textwidth,height=0.55\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_state_rate_01-cropped.pdf}
-        % \end{minipage}
-    \end{center}
+        \begin{minipage}[t][0.54\frametextheight][t]{\columnwidth}
+            \begin{center}
+                % Speciation rate
+                \includegraphics<2->[width=\columnwidth,height=0.54\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_expected_burst_rate_0-cropped.pdf}
+            \end{center}
+        \end{minipage}
 
+        \vspace{1mm}
+        \begin{minipage}[t][0.54\frametextheight][t]{\columnwidth}
+            \begin{center}
+                % Speciation rate
+                \includegraphics[width=\columnwidth,height=0.54\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_birth_rate_0-cropped.pdf}
+            \end{center}
+        \end{minipage}
+
+        \column{.33\textwidth}
+
+        \begin{minipage}[t][0.54\frametextheight][t]{\columnwidth}
+            \begin{center}
+                % Speciation rate
+                \includegraphics<2->[width=\columnwidth,height=0.54\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/direct/custom-plots/out.test_estimate_log10_expected_burst_rate_1-cropped.pdf}
+            \end{center}
+        \end{minipage}
+
+        \vspace{1mm}
+        \begin{minipage}[t][0.54\frametextheight][t]{\columnwidth}
+            \begin{center}
+                % Exctinction rate
+                \includegraphics[width=\columnwidth,height=0.54\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_death_rate_0-cropped.pdf}
+            \end{center}
+        \end{minipage}
+
+        \column{.33\textwidth}
+
+        \begin{minipage}[t][0.54\frametextheight][t]{\columnwidth}
+            \begin{center}
+                % Speciation rate
+                \includegraphics<2->[width=\columnwidth,height=0.54\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_expected_burst_rate_diff-cropped.pdf}
+            \end{center}
+        \end{minipage}
+
+        \vspace{1mm}
+        \begin{minipage}[t][0.54\frametextheight][t]{\columnwidth}
+            \begin{center}
+                % Burst rate
+                \includegraphics[width=\columnwidth,height=0.54\frametextheight,keepaspectratio]{../../bdb-state-dep-continuous/custom-plots/out.test_estimate_log10_state_rate_01-cropped.pdf}
+            \end{center}
+        \end{minipage}
+
+    \end{columns}
 \end{frame}
