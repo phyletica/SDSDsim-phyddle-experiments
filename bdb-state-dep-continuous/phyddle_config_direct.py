@@ -9,8 +9,9 @@ args = {
     #-------------------------------#
     'step'    : 'FTEP',                    # Step(s) to run
     'verbose' : 'T',                       # print verbose phyddle output?
-    'prefix'  : 'out-direct',                     # Prefix for output for all setps
-    'dir'     : './',
+    'prefix'  : 'out',                     # Prefix for output for all setps
+    'dir'     : './direct',                # Default directory
+    'sim_dir' : './simulate',              # Directory for simulation files
     'output_precision'   : 12,             # Number of digits (precision) for numbers in output files
 
     #-------------------------------#
