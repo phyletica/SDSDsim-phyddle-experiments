@@ -129,10 +129,25 @@ def get_log10_model_parameters(sdsd_model):
         p[f'log10_{k}'] = math.log10(v)
     return p
 
-def main():
-    out_path, prefix, start_idx, batch_size = parse_cli_args()
-    if not os.path.exists(out_path):
-        os.mkdir(out_path)
+def count_burst_times_with_extant_nodes(tree):
+    burst_with_extant_nodes = set()
+    t = tree.prune_extinct_leaves()
+    for node in t.internal_leafward_iter():
+        if node.is_burst_node:
+            time_str = f"{node.time:.9f}"
+            burst_with_extant_nodes.add(node.time)
+    return len(burst_with_extant_nodes)
+
+def gen_sims(count_burst_events_only = False):
+    if count_burst_events_only:
+        out_path = ''
+        prefix = ''
+        start_idx = 0
+        batch_size = 1000
+    else:
+        out_path, prefix, start_idx, batch_size = parse_cli_args()
+        if not os.path.exists(out_path):
+            os.mkdir(out_path)
 
     path_prefix = os.path.join(out_path, prefix)
 
@@ -168,6 +183,9 @@ def main():
     ]
 
     sim_idx = start_idx
+
+    if count_burst_events_only:
+        sys.stdout.write("burst_count\tbursts_with_extant_nodes_count\n")
 
     while sim_idx < (start_idx + batch_size):
         sim_path_prefix = f'{path_prefix}.{sim_idx}'
@@ -219,7 +237,12 @@ def main():
         assert root.number_of_extant_leaves == tree_width
 
         if prune_extinct_leaves:
-            tree = tree.prune_extinct_leaves()
+            root = root.prune_extinct_leaves()
+
+        if count_burst_events_only:
+            burst_count = len(burst_times)
+            burst_w_extant_nodes_count = count_burst_times_with_extant_nodes(root)
+            sys.stdout.write(f"{burst_count}\t{burst_w_extant_nodes_count}\n")
 
         log10_variables = get_log10_model_parameters(model)
         reduced_log10_variables = log10_variables
@@ -238,4 +261,7 @@ def main():
         sim_idx += 1
 
 if __name__ == '__main__':
-    main()
+    if sys.argv[-1] == "--sample-burst-counts":
+        gen_sims(True)
+        sys.exit(0)
+    gen_sims(False)
