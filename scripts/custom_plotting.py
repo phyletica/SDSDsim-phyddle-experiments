@@ -101,7 +101,7 @@ class Plotter:
         self.trn_dir = str(args['trn_dir'])
         self.est_dir = str(args['est_dir'])
         # self.plt_dir = str(args['plt_dir'])
-        self.plt_dir = "./custom-plots"
+        self.plt_dir = os.path.join(os.path.dirname(str(args['plt_dir'])), 'custom-plots')
         self.log_dir = str(args['log_dir'])
 
         # dataset info

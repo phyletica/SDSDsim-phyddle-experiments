@@ -2,7 +2,7 @@
 
 set -e
 
-for pdf_path in custom-plots/*pdf
+for pdf_path in custom-plots/*pdf direct/custom-plots/*pdf
 do
     if [[ "$pdf_path" != *cropped.pdf ]]
     then
